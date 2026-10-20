@@ -2165,19 +2165,26 @@ DEVICE_CUSTOMIZES = {
     'xiaomi.aircondition.*:power_cost_month': ENERGY_KWH,
     'xiaomi.airp.cpa4': {
         'button_actions': 'toggle,reset_filter_life',
-        'sensor_properties': 'filter_life_level',
+        'sensor_properties': 'filter_life_level,fault,motor_speed_rpm',
         'switch_properties': 'alarm',
         'select_properties': 'brightness,aqi_updata_heartbeat',
         'number_properties': 'favorite_level',
         'speed_property': 'favorite_level',
+        'configuration_entities': 'alarm,physical_controls_locked,brightness,aqi_updata_heartbeat,'
+                                  'reset_filter_life',
+        'diagnostic_entities': 'fault,motor_speed_rpm',
         'exclude_miot_services': None,
-        'exclude_miot_properties': 'moto-speed-rpm,country_code,filter_used_time_dbg',
+        'exclude_miot_properties': 'country_code,filter_used_time_dbg',
         'chunk_coordinators': [
             {'interval': 21, 'props': 'on,mode'},
-            {'interval': 51, 'props': 'favorite_level,pm2_5_density'},
+            {'interval': 51, 'props': 'favorite_level,pm2_5_density,fault,motor_speed_rpm'},
             {'interval': 121, 'props': 'alarm,physical_controls_locked,brightness,aqi_updata_heartbeat'},
             {'interval': 300, 'props': 'filter_*'},
         ],
+    },
+    'xiaomi.airp.cpa4:motor_speed_rpm': {
+        'unit_of_measurement': 'rpm',
+        'state_class': 'measurement',
     },
     'xiaomi.airp.mp4': {
         'switch_properties': 'anion,alarm',
