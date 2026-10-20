@@ -589,7 +589,7 @@ async def _handle_device_registry_event(hass: hass_core.HomeAssistant):
         action = event.data['action']
         registry = dr.async_get(hass)
         device_id = event.data.get('device_id')
-        if device_id not in registry.devices:
+        if not device_id:
             return
         device = registry.async_get(device_id)
         if not device or not device.identifiers:
